@@ -11,21 +11,18 @@ import { EmailService } from './email.service';
 import { EmailPlainTextDto } from './dto';
 import { HtmlEscapeValidationPipe } from '../pipes';
 import { EmailSentEntity } from './entities';
-import { JwtGuard } from '../auth/guard/jwt.guard';
-// import { AllowRoles } from '../auth/allow-roles';
-// import { RolesGuard } from '../auth/guard';
+import { AllowRoles } from '../auth/allow-roles';
+import { RolesGuard, JwtGuard } from '../auth/guard';
 
 @Controller('email')
-@UseGuards(JwtGuard)
-// @UseGuards(RolesGuard)
+@UseGuards(JwtGuard, RolesGuard)
 @ApiBearerAuth()
 @ApiTags('Email')
 export class EmailController {
   constructor(private readonly emailService: EmailService) {}
   //
   @Post('plaintext')
-  // @AllowRoles('admin')
-  // @AllowRoles()
+  @AllowRoles('admin')
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: EmailSentEntity })
   async plaintext(

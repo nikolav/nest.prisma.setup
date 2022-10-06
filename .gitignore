@@ -19,11 +19,14 @@ _.py
 .dynamodb/
 .eggs/
 .env
+.env*
 .env.backup
+.env.dev
 .env.development.local
 .env.local
 .env.production.local
 .env.test.local
+.env.testing
 .env*.local
 .eslintcache
 .fuse_hidden*
@@ -168,6 +171,7 @@ coverage.xml
 cython_debug/
 db.sqlite3
 db.sqlite3-journal
+deploy-git.sh
 develop-eggs/
 dist
 dist-ssr
@@ -231,6 +235,3 @@ wheels/
 yarn-debug.log*
 yarn-error.log
 yarn-error.log*.env.testing
-.env.testing
-deploy-git.sh
-.env.dev

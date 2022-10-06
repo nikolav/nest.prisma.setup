@@ -4,11 +4,11 @@
 POST http://localhost:3001/email/plaintext
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbDh1b24wc2swMDAwdDZoazR2bzM0bTZsIiwiaWF0IjoxNjY1MDc3MzAyLCJleHAiOjE2NjUxNjM3MDJ9.MTDDtip1Rsgm9wRLDjLc-YV6EpDDHTMHXN9rfYabI7Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJAbmlrb2xhdiIsImlhdCI6MTY2NTA4MjIwMiwiZXhwIjoxNjY1MTY4NjAyfQ.Wi5Jm7F4VGCF7RNnJha_M-cEwq5YLzQmUkYnTVQhGj8
 
 {
   "to": "admin@nikolav.rs",
-  "from": "app@email.com",
+  "from": "admin@nikolav.rs",
   "subject": "promo.subject --test",
   "message": "promo.message --test"
 }

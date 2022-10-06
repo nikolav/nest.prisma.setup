@@ -9,6 +9,6 @@ import { JwtStrategy } from './strategy/jwt.strategy';
   imports: [PassportModule, JwtModule.register({})],
   providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
-  // exports: [AuthService],
+  exports: [AuthService],
 })
 export class AuthModule {}

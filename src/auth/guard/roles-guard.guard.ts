@@ -15,19 +15,15 @@ export class RolesGuard implements CanActivate {
   ): boolean | Promise<boolean> | Observable<boolean> {
     const roles = this.reflector.get<string[]>('roles', context.getHandler());
     // allow * if no role policy declared
-    console.log({ roles });
-    if (!roles || 0 === roles?.length) {
+    if (!roles || !roles.length) {
       return true;
     }
     const { user } = context.switchToHttp().getRequest();
-    console.log({ user });
-    // block unauthenticated request
+    // check unauthenticated request
     if (!user) {
       return false;
     }
     // pg roles lookup/match
-    const m = this.auth.matchesRoles(user, roles);
-    console.log({ m });
-    return m;
+    return this.auth.matchesRoles(user, roles);
   }
 }

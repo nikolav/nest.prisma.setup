@@ -5,12 +5,12 @@ import { ConfigService } from '@nestjs/config';
 import { join as pathJoin } from 'path';
 import { EmailService } from './email.service';
 import { EmailController } from './email.controller';
-// import { AuthModule } from '../auth/auth.module';
+import { AuthModule } from '../auth/auth.module';
 //
 @Global()
 @Module({
   imports: [
-    // AuthModule,
+    AuthModule,
     MailerModule.forRootAsync({
       useFactory: async (config: ConfigService) => ({
         // transport: config.get('EMAIL_TRANSPORT'),
