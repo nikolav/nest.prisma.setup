@@ -9,15 +9,18 @@ import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { PrismaClientExceptionFilter } from '../src/prisma-client-exception.filter';
+import { EmailService } from '../src/email/email.service';
 
 describe('test --integration', () => {
   let app: INestApplication;
   let prisma: PrismaService;
+  let mailer: EmailService;
   //
   const fakeEmail = () => `user--${Math.random()}@email.com`;
   const testUserEmail = 'admin@nikolav.rs';
   const password = '122333';
   let testUserToken: string;
+  let testAdminToken: string;
   //
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -46,9 +49,13 @@ describe('test --integration', () => {
     await app.init();
 
     prisma = app.get(PrismaService);
+    mailer = app.get(EmailService);
+    //
+    jest.clearAllMocks();
   });
   afterAll(async () => {
     await app.close();
+    jest.clearAllMocks();
   });
   //
   // init
@@ -111,6 +118,7 @@ describe('test --integration', () => {
           expect(res.statusCode).toBe(200);
           expect(res.body.id).toBeTruthy();
           expect(res.body.token).toBeTruthy();
+          testAdminToken = res.body.token;
         }));
     it('401 -- invalid email', () =>
       request(app.getHttpServer())
@@ -175,5 +183,67 @@ describe('test --integration', () => {
         .expect((res) => {
           expect(res.statusCode).toBe(401);
         }));
+  });
+  // role policy
+  describe('#role based access policy for protected email route with admin-guard', () => {
+    const testToute = '/email/plaintext';
+
+    it('200 -- admin policy can send emails', () => {
+      const messageId = '<yiqkplzbqlx>';
+      const messageSentPayload = { messageId };
+      const mockSendMail = jest
+        .spyOn(mailer, 'plaintext')
+        .mockResolvedValue(messageSentPayload);
+
+      return request(app.getHttpServer())
+        .post(testToute)
+        .set('Authorization', `Bearer ${testAdminToken}`)
+        .send({
+          to: testUserEmail,
+          from: 'admin@nikolav.rs',
+          subject: 'test',
+          message: 'test',
+        })
+        .expect((res) => {
+          expect(mockSendMail).toHaveBeenCalled();
+          expect(res.statusCode).toBe(200);
+          expect(res.body.messageId).toBe(messageId);
+        });
+    });
+
+    it('403 -- blocks authenticated/non-admin-policy to access admin-guarded route', () =>
+      request(app.getHttpServer())
+        .post(testToute)
+        .set('Authorization', `Bearer ${testUserToken}`)
+        .send({
+          to: testUserEmail,
+          from: 'admin@nikolav.rs',
+          subject: 'test',
+          message: 'test',
+        })
+        .expect(403));
+
+    it('401 -- invalid access-token request to guarded route', () =>
+      request(app.getHttpServer())
+        .post(testToute)
+        .set('Authorization', `Bearer FAKE_TOKEN`)
+        .send({
+          to: testUserEmail,
+          from: 'admin@nikolav.rs',
+          subject: 'test',
+          message: 'test',
+        })
+        .expect(401));
+
+    it('401 -- unauthorized request to guarded route', () =>
+      request(app.getHttpServer())
+        .post(testToute)
+        .send({
+          to: testUserEmail,
+          from: 'admin@nikolav.rs',
+          subject: 'test',
+          message: 'test',
+        })
+        .expect(401));
   });
 });

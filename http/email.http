@@ -4,7 +4,7 @@
 POST http://localhost:3001/email/plaintext
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJAbmlrb2xhdiIsImlhdCI6MTY2NTA4MjIwMiwiZXhwIjoxNjY1MTY4NjAyfQ.Wi5Jm7F4VGCF7RNnJha_M-cEwq5YLzQmUkYnTVQhGj8
+Authorization: Bearer -
 
 {
   "to": "admin@nikolav.rs",

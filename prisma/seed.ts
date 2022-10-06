@@ -12,21 +12,31 @@ const main_ = async () => {
 
   //
   const passwordHash = bcrypt.hashSync('122333', 1);
-  [
-    {
+  const { id: adminId } = await prisma.user.create({
+    data: {
       email: 'admin@nikolav.rs',
       passwordHash,
     },
-    {
+  });
+  await prisma.user.create({
+    data: {
       email: 'user-1@email.com',
       passwordHash,
     },
-  ].forEach(
-    async ({ email, passwordHash }) =>
-      await prisma.user.create({
-        data: { email, passwordHash },
-      }),
-  );
+  });
+  const { id: adminRoleId } = await prisma.role.create({
+    data: {
+      type: 'admin'
+    }
+  });
+  await prisma.rolesOnUsers.create({
+    data: {
+      userId: adminId, 
+      roleId: adminRoleId, 
+
+    }
+  });
+  // 
   [
     { name: 'app.name', value: APP_ID },
     { name: 'test', value: 'test' },
