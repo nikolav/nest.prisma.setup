@@ -1,0 +1,30 @@
+
+###
+
+POST http://localhost:3001/auth/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "user-007@email.com",
+  "password": "122333"
+}
+
+###
+
+POST http://localhost:3001/auth/authenticate
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "user-12@email.com",
+  "password": "122333"
+}
+
+###
+
+http://localhost:3001/auth/user
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbDh1dTN2cGMwMDAwdDZoYzV4YnN6djZtIiwiaWF0IjoxNjY0OTI2MjYwLCJleHAiOjE2NjUwMTI2NjB9.igCin6smUWqLFqkbN95B04ld0rLDoczjO96Ge0uKFfk
+
+###

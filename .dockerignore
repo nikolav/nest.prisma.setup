@@ -1,0 +1,26 @@
+.dockerignore
+.editorconfig
+# .env
+.eslintrc
+.git
+.git/
+.gitattributes
+.gitignore
+.gitlab-ci.yml
+.idea
+.vscode/
+*.log
+bootstrap/cache
+CHANGELOG.md
+coverage/
+docker-compose.yml
+Dockerfile
+logs
+node_modules/
+npm-debug.log*
+README.md
+storage/framework
+storage/logs
+vendor
+yarn-debug.log*
+yarn-error.log*

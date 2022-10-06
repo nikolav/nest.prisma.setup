@@ -1,0 +1,16 @@
+
+###
+
+POST http://localhost:3001/email/plaintext
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbDh1b24wc2swMDAwdDZoazR2bzM0bTZsIiwiaWF0IjoxNjY1MDc3MzAyLCJleHAiOjE2NjUxNjM3MDJ9.MTDDtip1Rsgm9wRLDjLc-YV6EpDDHTMHXN9rfYabI7Q
+
+{
+  "to": "admin@nikolav.rs",
+  "from": "app@email.com",
+  "subject": "promo.subject --test",
+  "message": "promo.message --test"
+}
+
+###
