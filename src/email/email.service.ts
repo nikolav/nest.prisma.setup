@@ -1,16 +1,35 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
 import { EmailPlainTextDto } from './dto';
+import { type UserWithPasswordResetToken } from './dto/email-password-reset.d';
+import { ConfigService } from '@nestjs/config';
+import { UtilsService } from '../utils/utils.service';
 
 @Injectable()
 export class EmailService {
-  constructor(private readonly mailer: MailerService) {}
+  constructor(
+    private readonly mailer: MailerService,
+    private readonly config: ConfigService,
+    private readonly utils: UtilsService,
+  ) {}
+  //
+  sendMailPasswordResetLink({ email, token }: UserWithPasswordResetToken) {
+    const domain = this.utils.stripEndSlashes(this.config.get('API_DOMAIN'));
+    const link = `${domain}/users/edit-password?token=${token}`;
+    //
+    return this.mailer.sendMail({
+      to: email,
+      subject: 'password reset @nikolav.rs',
+      template: 'password-reset/message',
+      context: { link },
+    });
+  }
   //
   plaintext({
     to = 'admin@nikolav.rs',
-    from = 'noreply@nestjs-nodemailer.com',
+    from = 'admin@nikolav.rs',
     subject = 'NestJS MailerModule ✔',
-    message = 'message@nestjs.nodemailer',
+    message = 'message --test',
   }: EmailPlainTextDto) {
     return this.mailer.sendMail({
       to,
@@ -22,19 +41,4 @@ export class EmailService {
       context: { message, link: 'https://nikolav.rs/' },
     });
   }
-
-  // async sendUserConfirmation(user: User, token: string) {
-  //   const url = `example.com/auth/confirm?token=${token}`;
-
-  //   await this.mailerService.sendMail({
-  //     to: user.email,
-  //     // from: '"Support Team" <support@example.com>', // override default from
-  //     subject: 'Welcome to Nice App! Confirm your Email',
-  //     template: './confirmation', // `.hbs` extension is appended automatically
-  //     context: { // ✏️ filling curly brackets with content
-  //       name: user.name,
-  //       url,
-  //     },
-  //   });
-  // }
 }

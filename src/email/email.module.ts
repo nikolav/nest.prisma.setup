@@ -24,7 +24,7 @@ import { AuthModule } from '../auth/auth.module';
           },
         },
         defaults: {
-          from: '"noreply.app" <noreply@nikolav.rs>',
+          from: 'admin@nikolav.rs',
         },
         template: {
           dir: pathJoin(__dirname, 'templates'),

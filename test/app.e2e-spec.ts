@@ -246,4 +246,24 @@ describe('test --integration', () => {
         })
         .expect(401));
   });
+  //
+  describe('@users service, password reset', () => {
+    const testRoutePasswordReset = '/users/send-password-reset-link';
+    it('201 -- emails password-reset link', () => {
+      const messageId = '<ijnqnrflcss>';
+      const messageSentPayload = { messageId };
+      const mockSendMail = jest
+        .spyOn(mailer, 'sendMailPasswordResetLink')
+        .mockResolvedValue(messageSentPayload);
+
+      return request(app.getHttpServer())
+        .post(testRoutePasswordReset)
+        .send({ email: testUserEmail })
+        .expect((res) => {
+          expect(mockSendMail).toHaveBeenCalled();
+          expect(res.statusCode).toBe(201);
+          expect(res.body.messageId).toBe(messageId);
+        });
+    });
+  });
 });

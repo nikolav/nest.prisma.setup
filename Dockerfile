@@ -3,7 +3,7 @@ RUN mkdir -p /home/app
 WORKDIR /home/app
 COPY package*.json yarn.lock ./
 COPY prisma ./prisma/
-RUN yarn
+RUN yarn install --production --frozen-lockfile
 COPY . .
 RUN yarn run build
 VOLUME .:/home/app

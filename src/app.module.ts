@@ -5,7 +5,7 @@ import { AppController } from './app.controller';
 import { PrismaModule } from './prisma/prisma.module';
 import { VariablesModule } from './variables/variables.module';
 import { AuthModule } from './auth/auth.module';
-// import { UserModule } from './user/user.module';
+import { UserModule } from './user/user.module';
 import { UtilsModule } from './utils/utils.module';
 import { EmailModule } from './email/email.module';
 //
@@ -18,7 +18,7 @@ import { EmailModule } from './email/email.module';
     VariablesModule,
     AuthModule,
     UtilsModule,
-    // UserModule,
+    UserModule,
     // 
     // https://notiz.dev/blog/send-emails-with-nestjs
     EmailModule,

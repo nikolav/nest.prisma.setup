@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "dotenv -e .env.dev -- nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"prisma/**/*.ts\" \"config**/*.ts\" \"./mod.ts\"",
     "start": "nest start",
     "dev": "dotenv -e .env.dev -- nest start --watch",

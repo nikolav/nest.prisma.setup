@@ -1,0 +1,14 @@
+
+
+###
+
+POST http://localhost:3001/users/send-password-reset-link
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "admin@nikolav.rs"
+}
+
+###
+
