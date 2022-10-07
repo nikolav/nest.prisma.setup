@@ -7,9 +7,10 @@ const { APP_ID } = config;
 
 const main_ = async () => {
   //
-  await prisma.user.deleteMany({});
   await prisma.main.deleteMany({});
-
+  await prisma.role.deleteMany({});
+  await prisma.user.deleteMany({});
+  await prisma.rolesOnUsers.deleteMany({});
   //
   const passwordHash = bcrypt.hashSync('122333', 1);
   const { id: adminId } = await prisma.user.create({
@@ -26,17 +27,16 @@ const main_ = async () => {
   });
   const { id: adminRoleId } = await prisma.role.create({
     data: {
-      type: 'admin'
-    }
+      type: 'admin',
+    },
   });
   await prisma.rolesOnUsers.create({
     data: {
-      userId: adminId, 
-      roleId: adminRoleId, 
-
-    }
+      userId: adminId,
+      roleId: adminRoleId,
+    },
   });
-  // 
+  //
   [
     { name: 'app.name', value: APP_ID },
     { name: 'test', value: 'test' },

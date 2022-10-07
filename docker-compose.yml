@@ -3,7 +3,7 @@ version: "3"
 services:
 
   api:
-    container_name: nest-rest-api
+    container_name: rest-api
     build: .
     # environment:
     #   - X=1
@@ -17,11 +17,11 @@ services:
       - .env
   
   postgres:
-    container_name: postgres
+    container_name: pg
     image: postgres:14.5
     restart: always
     ports:
-      - 5555:5432
+      - 5432:5432
     env_file:
       - .env
     volumes:

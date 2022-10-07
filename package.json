@@ -23,9 +23,8 @@
     "db:migrate": "dotenv -e .env.dev -- npx prisma migrate dev ",
     "db:seed": "dotenv -e .env.dev -- npx prisma db seed ",
     "db:migrate:testing": "dotenv -e .env.testing -- npx prisma migrate dev ",
-    "db:seed:testing": "dotenv -e .env.testing -- npx prisma db seed ", 
-    "tinker": "dotenv -e .env.dev -- ts-node ./tinker.ts "
-
+    "db:seed:testing": "dotenv -e .env.testing -- npx prisma db seed ",
+    "tinker": "dotenv -e .env -- ts-node ./tinker.ts "
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.8.1",
