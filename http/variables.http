@@ -2,7 +2,7 @@
 
 ###
 
-http://localhost:3001/variables
+http://46.101.193.219:8081/variables
 Authorization: Bearer -
 Accept: application/json
 

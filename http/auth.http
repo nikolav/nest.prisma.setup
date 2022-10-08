@@ -25,8 +25,8 @@ Content-Type: application/json
 ###
 
 # http://localhost:3001/auth/user
-http://167.99.194.166:8081/auth/user
+http://46.101.193.219:8081/auth/user
 Accept: application/json
-Authorization: Bearer -
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbDkwMTRldmMwMDAwcXUxZXVxcGF1b2FqIiwiaWF0IjoxNjY1MjQyNjkxLCJleHAiOjE2NjUzMjkwOTF9.9CEqo8uV1y9avGfq48JUpKvyGG5p79Z_IOQst8keJWw
 
 ###
