@@ -31,9 +31,9 @@ curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compo
 chmod +x /usr/local/bin/docker-compose
 
 # status check
-node --version
-npm --version
-yarn --version
+echo -n 'node: ' && node --version
+echo -n 'npm: ' && npm --version
+echo -n 'yarn: ' && yarn --version
 docker --version
 docker-compose --version
 service docker status
