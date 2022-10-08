@@ -6,6 +6,7 @@ _.py
 !.vscode/settings.json
 !.vscode/tasks.json
 .~lock.*#
+.awcache
 .c9/
 .cache
 .cache/
@@ -19,7 +20,6 @@ _.py
 .dynamodb/
 .eggs/
 .env
-.env*
 .env.backup
 .env.dev
 .env.development.local
@@ -27,6 +27,7 @@ _.py
 .env.production.local
 .env.test.local
 .env.testing
+.env*
 .env*.local
 .eslintcache
 .fuse_hidden*
@@ -59,6 +60,7 @@ _.py
 .Python
 .pytype/
 .ropeproject
+.rpt2_cache
 .rpt2_cache/
 .rts2_cache_cjs/
 .rts2_cache_es/
@@ -77,6 +79,7 @@ _.py
 .Trash-*
 .venv
 .vercel
+.vscode
 .vscode-test
 .vscode/*
 .vuepress/dist
@@ -162,6 +165,7 @@ build/
 build/Release
 celerybeat-schedule
 celerybeat.pid
+compiled
 components/temp.jsx
 components/z.jsx
 composer.phar
@@ -177,6 +181,7 @@ dist
 dist-ssr
 dist/
 dmypy.json
+docs
 docs/_build/
 downloads/
 eggs/

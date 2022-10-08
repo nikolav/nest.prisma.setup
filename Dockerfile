@@ -5,7 +5,7 @@ COPY package*.json yarn.lock ./
 COPY prisma ./prisma/
 RUN yarn install --production --frozen-lockfile
 COPY . .
-RUN yarn run build
+RUN yarn build
 VOLUME .:/home/app
 ENV PORT 3001
 EXPOSE $PORT

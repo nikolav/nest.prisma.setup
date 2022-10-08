@@ -2,8 +2,8 @@ version: "3"
 
 services:
 
-  api:
-    container_name: rest-api
+  api_app000:
+    container_name: nest-api
     build: .
     # environment:
     #   - X=1
@@ -12,12 +12,12 @@ services:
     volumes:
       - .:/home/app
     depends_on:
-      - postgres
+      - postgres_app000
     env_file:
       - .env
   
-  postgres:
-    container_name: pg
+  postgres_app000:
+    container_name: pg_app000
     image: postgres:14.5
     restart: always
     ports:
@@ -25,7 +25,7 @@ services:
     env_file:
       - .env
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - vol_postgres_app000:/var/lib/postgresql/data
 
 volumes:
-  postgres:
+  vol_postgres_app000:

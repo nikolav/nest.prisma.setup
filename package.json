@@ -20,11 +20,13 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "dotenv -e .env.testing -- jest --no-cache --config ./test/jest-e2e.json",
-    "db:migrate": "dotenv -e .env.dev -- npx prisma migrate dev ",
-    "db:seed": "dotenv -e .env.dev -- npx prisma db seed ",
+    "db:migrate": "npx prisma migrate dev ",
+    "db:seed": "npx prisma db seed ",
+    "db:migrate:dev": "dotenv -e .env.dev -- npx prisma migrate dev ",
+    "db:seed:dev": "dotenv -e .env.dev -- npx prisma db seed ",
     "db:migrate:testing": "dotenv -e .env.testing -- npx prisma migrate dev ",
     "db:seed:testing": "dotenv -e .env.testing -- npx prisma db seed ",
-    "tinker": "dotenv -e .env -- ts-node ./tinker.ts "
+    "tinker": "dotenv -e .env.dev -- ts-node ./tinker.ts "
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.8.1",
