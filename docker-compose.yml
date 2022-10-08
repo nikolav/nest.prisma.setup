@@ -3,7 +3,7 @@ version: "3"
 services:
 
   api_app000:
-    container_name: nest-api
+    container_name: nestapi_app000
     build: .
     # environment:
     #   - X=1
@@ -15,7 +15,7 @@ services:
       - postgres_app000
     env_file:
       - .env
-  
+
   postgres_app000:
     container_name: pg_app000
     image: postgres:14.5
