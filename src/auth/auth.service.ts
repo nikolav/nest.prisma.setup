@@ -43,10 +43,10 @@ export class AuthService {
     const payload = { sub: user.id };
     // config.acces-token
     const secret = this.config.get('JWT_SECRET');
-    const expiresIn = `${this.config.get('JWT_TOKEN_EXPIRE')}s`;
+    const expiresIn = parseInt(this.config.get('JWT_TOKEN_EXPIRE'), 10);
     // config.refresh-token
     const secretRefresh = this.config.get('JWT_SECRET_TOKEN_REFRESH');
-    const expiresInRefresh = `${this.config.get('JWT_TOKEN_REFRESH_EXPIRE')}s`;
+    const expiresInRefresh = parseInt(this.config.get('JWT_TOKEN_REFRESH_EXPIRE'), 10);
     // encrypt.AT
     const token = await this.jwt.sign(payload, {
       expiresIn,
@@ -85,18 +85,18 @@ export class AuthService {
     return map(res, 'type');
   }
   //
-  async findManyByRole(roleType: string) {
-    // get *users with a .type role
-    return await this.prisma.user.findMany({
-      where: {
-        roles: {
-          some: {
-            role: {
-              type: roleType,
-            },
-          },
-        },
-      },
-    });
-  }
+  // async findManyByRole(roleType: string) {
+  //   // get *users with a .type role
+  //   return await this.prisma.user.findMany({
+  //     where: {
+  //       roles: {
+  //         some: {
+  //           role: {
+  //             type: roleType,
+  //           },
+  //         },
+  //       },
+  //     },
+  //   });
+  // }
 }

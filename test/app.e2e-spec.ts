@@ -6,6 +6,8 @@ import {
 } from '@nestjs/common';
 import { HttpAdapterHost, Reflector } from '@nestjs/core';
 import * as request from 'supertest';
+import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
 import { AppModule } from '../src/app.module';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { PrismaClientExceptionFilter } from '../src/prisma-client-exception.filter';
@@ -15,20 +17,22 @@ describe('test --integration', () => {
   let app: INestApplication;
   let prisma: PrismaService;
   let mailer: EmailService;
-  //
+  let config: ConfigService;
+  let jwt: JwtService;
+
   const fakeEmail = () => `user--${Math.random()}@email.com`;
+  const fakePassword = () => String(Math.random());
   const testUserEmail = 'admin@nikolav.rs';
   const password = '122333';
   let testUserToken: string;
   let testAdminToken: string;
-  //
+
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    //
     // setup pipes, filters, interceptors
     app.useGlobalPipes(
       new ValidationPipe({
@@ -50,14 +54,15 @@ describe('test --integration', () => {
 
     prisma = app.get(PrismaService);
     mailer = app.get(EmailService);
-    //
+    config = app.get(ConfigService);
+    jwt = app.get(JwtService);
+
     jest.clearAllMocks();
   });
   afterAll(async () => {
     await app.close();
     jest.clearAllMocks();
   });
-  //
   // init
   describe('@status', () => {
     it('api online', () =>
@@ -246,10 +251,11 @@ describe('test --integration', () => {
         })
         .expect(401));
   });
-  //
+
   describe('@users service, password reset', () => {
-    const testRoutePasswordReset = '/users/send-password-reset-link';
+
     it('201 -- emails password-reset link', () => {
+      const testRoutePasswordReset = '/users/send-password-reset-link';
       const messageId = '<ijnqnrflcss>';
       const messageSentPayload = { messageId };
       const mockSendMail = jest
@@ -265,5 +271,48 @@ describe('test --integration', () => {
           expect(res.body.messageId).toBe(messageId);
         });
     });
+
+    const testRoutePR = '/users/password-reset';
+    const testUserPR = {
+      email: `user--${fakePassword()}@email.com`,
+      passwordHash: fakePassword(),
+    };
+    let testPRToken;
+
+    it('200 -- resets password for request with valid reset token', async () => {
+      // test user for password reset test
+      // save, get id to sign
+      const { id } = await prisma.user.create({ data: testUserPR });
+      testPRToken = jwt.sign(
+        { id },
+        {
+          secret: config.get('JWT_SECRET_UPDATE_PASSWORD'),
+          expiresIn: parseInt(
+            config.get('JWT_SECRET_UPDATE_PASSWORD_EXPIRE'),
+            10,
+          ),
+        },
+      );
+
+      return request(app.getHttpServer())
+        .post(testRoutePR)
+        .send({ token: testPRToken, password: fakePassword() })
+        .expect(200);
+    });
+    it('400 -- fails if provided invalid password reset token', () =>
+      request(app.getHttpServer())
+        .post(testRoutePR)
+        .send({ token: 'INVALID_TOKEN', password: fakePassword() })
+        .expect(400));
+    it('400 -- fails if short password provided', () =>
+      request(app.getHttpServer())
+        .post(testRoutePR)
+        .send({ token: testPRToken, password: '1' })
+        .expect(400));
+    it('400 -- fails if no password provided', () =>
+      request(app.getHttpServer())
+        .post(testRoutePR)
+        .send({ token: testPRToken })
+        .expect(400));
   });
 });

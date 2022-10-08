@@ -10,5 +10,14 @@ Content-Type: application/json
   "email": "admin@nikolav.rs"
 }
 
-###
+### 
+
+POST http://localhost:3001/users/password-reset
+Accept: application/json
+Content-Type: application/json
+
+{
+  "token": "-",
+  "password": "122333"
+}
 
