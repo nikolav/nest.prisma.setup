@@ -144,7 +144,7 @@ _.py
 /.vscode
 /build
 /coverage
-/dist
+# /dist
 /node_modules
 /out/
 /public/hot
@@ -177,9 +177,9 @@ db.sqlite3
 db.sqlite3-journal
 deploy-git.sh
 develop-eggs/
-dist
+# dist
 dist-ssr
-dist/
+# dist/
 dmypy.json
 docs
 docs/_build/

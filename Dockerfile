@@ -10,10 +10,8 @@ RUN yarn
 
 COPY . .
 RUN yarn run build:prod
-RUN yarn run db:migrate
-RUN yarn run db:seed
 
 ENV PORT 3001
 EXPOSE $PORT
 
-CMD ["yarn", "run", "start:prod"]
+CMD yarn run start:prod; yarn run db:migrate; yarn run db:seed

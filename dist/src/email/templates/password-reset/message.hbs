@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>password-reset</title>
+    <meta name="viewport" content="width=640" />
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        word-wrap: break-word;
+      }
+      img {
+        border: none;
+      }
+      input {
+        border: 1px solid black;
+        border-radius: 2px;
+        padding: 0;
+      }
+      input[type='image'] {
+        border: none;
+      }
+      textarea {
+        border: 1px solid black;
+        padding: 0;
+      }
+      * {
+        box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+        -ms-box-sizing: content-box;
+      }
+      a:link {
+        color: #2d4354;
+        text-decoration: none;
+      }
+      a:active {
+        color: #c6302b;
+        text-decoration: underline;
+      }
+      a:hover {
+        color: #27353f;
+        text-decoration: underline;
+      }
+      a:visited {
+        color: #27353f;
+        text-decoration: none;
+      }
+      .DefaultParagraph {
+        text-align: left;
+        margin: 0px;
+        text-indent: 0px;
+        line-height: 1px;
+        font-family: 'Verdana', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        color: #000000;
+        background-color: transparent;
+        font-variant: normal;
+        font-size: 16px;
+        vertical-align: 0;
+      }
+      .Body {
+        text-align: left;
+        margin: 0px 0px 12px;
+        text-indent: 0px;
+        line-height: 1px;
+        font-family: 'Verdana', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        color: #000000;
+        background-color: transparent;
+        font-variant: normal;
+        font-size: 16px;
+        vertical-align: 0;
+      }
+      .Normal {
+        text-align: left;
+        margin: 0px;
+        text-indent: 0px;
+        line-height: 1px;
+        font-family: 'Verdana', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        color: #000000;
+        background-color: transparent;
+        font-variant: normal;
+        font-size: 16px;
+        vertical-align: 0;
+      }
+
+      .P-1 {
+        text-align: center;
+        line-height: 1px;
+        font-family: 'Verdana', sans-serif;
+        font-style: italic;
+        font-weight: 700;
+        color: #425766;
+        background-color: transparent;
+        font-variant: small-caps;
+        font-size: 16px;
+        vertical-align: 0;
+        letter-spacing: 0.27px;
+      }
+      .C-1 {
+        line-height: 19.8px;
+        font-family: 'Verdana', sans-serif;
+        font-style: italic;
+        font-weight: 700;
+        color: #425766;
+        background-color: transparent;
+        text-decoration: none;
+        font-variant: small-caps;
+        font-size: 16px;
+        vertical-align: 0;
+        letter-spacing: 0.27px;
+      }
+      .P-2 {
+        text-align: center;
+        line-height: 1px;
+        font-family: 'Verdana', sans-serif;
+        font-style: italic;
+        font-weight: 700;
+        color: #425766;
+        background-color: transparent;
+        font-variant: normal;
+        font-size: 24px;
+        vertical-align: 0;
+      }
+      .C-2 {
+        line-height: 29px;
+        font-family: 'Verdana', sans-serif;
+        font-style: italic;
+        font-weight: 700;
+        color: #425766;
+        background-color: transparent;
+        text-decoration: none;
+        font-variant: normal;
+        font-size: 24px;
+        vertical-align: 0;
+      }
+      a.C-2:link,
+      a:link .C-2 {
+        color: #2d4354;
+        text-decoration: none;
+      }
+      a.C-2:visited,
+      a:visited .C-2 {
+        color: #27353f;
+        text-decoration: none;
+      }
+      a.C-2:hover,
+      a:hover .C-2 {
+        color: #27353f;
+        text-decoration: underline;
+      }
+      a.C-2:active,
+      a:active .C-2 {
+        color: #c6302b;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body style="height: 502px; background: #ffffff">
+    <div
+      id="divMain"
+      style="
+        background: #e6e7e4;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        width: 640px;
+        height: 480px;
+        top: 12px;
+      "
+    >
+      <div
+        style="
+          position: absolute;
+          left: 118px;
+          top: 84px;
+          width: 411px;
+          height: 64px;
+          overflow: hidden;
+        "
+      >
+        <p class="Body P-1">
+          <span class="C-1">Use the link to reset your password.</span>
+        </p>
+      </div>
+      <div
+        style="
+          position: absolute;
+          left: 163px;
+          top: 216px;
+          width: 314px;
+          height: 48px;
+          overflow: hidden;
+        "
+      >
+        <p class="Body P-2">
+          <a href="{{link}}" target="_blank" class="C-2">Reset My Password</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
