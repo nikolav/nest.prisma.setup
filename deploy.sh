@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 1
+
 yarn install
 yarn run build:prod
 docker-compose up -d --build

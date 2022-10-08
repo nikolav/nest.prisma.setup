@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 1
+
 # update packages
 apt update
 apt-get update
