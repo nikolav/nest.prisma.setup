@@ -14,4 +14,6 @@ RUN yarn run build:prod
 ENV PORT 3001
 EXPOSE $PORT
 
-CMD yarn run start:prod; yarn run db:migrate; yarn run db:seed
+CMD yarn run start:prod; \
+    yarn run db:migrate 
+    # yarn run db:seed

@@ -33,6 +33,6 @@ chmod +x /usr/local/bin/docker-compose
 node --version
 npm --version
 yarn --version
-dokcer --version
+docker --version
 docker-compose --version
 service docker status
