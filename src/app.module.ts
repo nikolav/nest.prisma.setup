@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { UtilsModule } from './utils/utils.module';
 import { EmailModule } from './email/email.module';
+import { MessageGateway } from './io/message.gateway';
 //
 @Module({
   imports: [
@@ -19,11 +20,10 @@ import { EmailModule } from './email/email.module';
     AuthModule,
     UtilsModule,
     UserModule,
-    // 
     // https://notiz.dev/blog/send-emails-with-nestjs
     EmailModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, MessageGateway],
 })
 export class AppModule {}
