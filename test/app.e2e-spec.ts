@@ -12,6 +12,10 @@ import { AppModule } from '../src/app.module';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { PrismaClientExceptionFilter } from '../src/prisma-client-exception.filter';
 import { EmailService } from '../src/email/email.service';
+import {
+  NestExpressApplication,
+  ExpressAdapter,
+} from '@nestjs/platform-express';
 
 describe('test --integration', () => {
   let app: INestApplication;
@@ -19,6 +23,7 @@ describe('test --integration', () => {
   let mailer: EmailService;
   let config: ConfigService;
   let jwt: JwtService;
+  // let a: NestExpressApplication
 
   const fakeEmail = () => `user--${Math.random()}@email.com`;
   const fakePassword = () => String(Math.random());
@@ -33,6 +38,9 @@ describe('test --integration', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    // app = moduleFixture.createNestApplication<NestExpressApplication>(
+    //   new ExpressAdapter(),
+    // );
     // setup pipes, filters, interceptors
     app.useGlobalPipes(
       new ValidationPipe({
@@ -253,7 +261,6 @@ describe('test --integration', () => {
   });
 
   describe('@users service, password reset', () => {
-
     it('201 -- emails password-reset link', () => {
       const testRoutePasswordReset = '/users/send-password-reset-link';
       const messageId = '<ijnqnrflcss>';
