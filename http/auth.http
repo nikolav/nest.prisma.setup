@@ -1,7 +1,7 @@
 
 ###
 
-POST http://80.240.16.242:8081/auth/authenticate
+POST http://172.104.229.79:8081/auth/authenticate
 Accept: application/json
 Content-Type: application/json
 
@@ -12,12 +12,12 @@ Content-Type: application/json
 
 ###
 
-POST http://46.101.193.219:8081/auth/register
+POST http://172.104.229.79:8081/auth/register
 Accept: application/json
 Content-Type: application/json
 
 {
-  "email": "admin@nikolav.rs",
+  "email": "user-2@nikolav.rs",
   "password": "122333"
 }
 
@@ -25,8 +25,8 @@ Content-Type: application/json
 ###
 
 # http://localhost:3001/auth/user
-http://80.240.16.242:8081/auth/user
+http://172.104.229.79:8081/auth/user
 Accept: application/json
-Authorization: Bearer -
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbDkwcTc3ODcwMDAyb3kwdHBzZmh3bDhnIiwiaWF0IjoxNjY1MjgyNDk2LCJleHAiOjE2NjUzNjg4OTZ9.QpVIfEBvKxRK66KLDHzPoPi2dZ2i_RslhjCqaoU2bhE
 
 ###
