@@ -12,10 +12,12 @@ import { AppModule } from '../src/app.module';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { PrismaClientExceptionFilter } from '../src/prisma-client-exception.filter';
 import { EmailService } from '../src/email/email.service';
-import {
-  NestExpressApplication,
-  ExpressAdapter,
-} from '@nestjs/platform-express';
+import { MessageGateway } from '../src/io/message.gateway';
+import { ClientEvent, ServerEvent } from '../src/io/event';
+// import {
+//   NestExpressApplication,
+//   ExpressAdapter,
+// } from '@nestjs/platform-express';
 
 describe('test --integration', () => {
   let app: INestApplication;
@@ -23,7 +25,8 @@ describe('test --integration', () => {
   let mailer: EmailService;
   let config: ConfigService;
   let jwt: JwtService;
-  // let a: NestExpressApplication
+  let message: MessageGateway;
+  // let expressApp: NestExpressApplication
 
   const fakeEmail = () => `user--${Math.random()}@email.com`;
   const fakePassword = () => String(Math.random());
@@ -64,6 +67,7 @@ describe('test --integration', () => {
     mailer = app.get(EmailService);
     config = app.get(ConfigService);
     jwt = app.get(JwtService);
+    message = app.get(MessageGateway);
 
     jest.clearAllMocks();
   });
@@ -75,7 +79,7 @@ describe('test --integration', () => {
   describe('@status', () => {
     it('api online', () =>
       request(app.getHttpServer())
-        .get('/')
+        .get('/api')
         .expect(200)
         .expect((res) => expect(res.body.status).toMatch(/ok/i)));
     it('test db online', async () => {
@@ -321,5 +325,12 @@ describe('test --integration', () => {
         .post(testRoutePR)
         .send({ token: testPRToken })
         .expect(400));
+  });
+
+  describe('@socket.io', () => {
+    it('websockets load', async () => {
+      const res = await message.io.emit('test', 'test');
+      expect(res).toBeTruthy();
+    });
   });
 });

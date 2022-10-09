@@ -23,7 +23,7 @@ export class AuthService {
     const newUser = await this.prisma.user.create({
       data: { email, passwordHash },
     });
-    // g2g here, paste tokens, send
+    // g2g here, assign tokens, send
     return this.withTokens(newUser);
   }
 
@@ -35,7 +35,7 @@ export class AuthService {
     // run credentials
     if (!user || !compareSync(password, user.passwordHash))
       throw new UnauthorizedException('-- invalid credentials');
-    // credentials ok, send user info
+    // credentials ok, assign tokens, send user info
     return await this.withTokens(user);
   }
 
@@ -46,7 +46,10 @@ export class AuthService {
     const expiresIn = parseInt(this.config.get('JWT_TOKEN_EXPIRE'), 10);
     // config.refresh-token
     const secretRefresh = this.config.get('JWT_SECRET_TOKEN_REFRESH');
-    const expiresInRefresh = parseInt(this.config.get('JWT_TOKEN_REFRESH_EXPIRE'), 10);
+    const expiresInRefresh = parseInt(
+      this.config.get('JWT_TOKEN_REFRESH_EXPIRE'),
+      10,
+    );
     // encrypt.AT
     const token = await this.jwt.sign(payload, {
       expiresIn,

@@ -71,7 +71,7 @@ export class UserService {
         password,
         parseInt(this.config.get('SALT_ROUNDS_BCRYPT'), 10),
       );
-      // 
+      //
       return await this.prisma.user.update({
         where: { id },
         data: { passwordHash },

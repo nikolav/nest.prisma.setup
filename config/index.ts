@@ -25,17 +25,16 @@ const config = {
   EMAIL_PORT: process.env.EMAIL_PORT,
   EMAIL_USERNAME: process.env.EMAIL_USERNAME,
   EMAIL_TRANSPORT: process.env.EMAIL_TRANSPORT,
-  // 
+  //
   POSTGRES_USER: process.env.POSTGRES_USER,
   POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
   POSTGRES_DB: process.env.POSTGRES_DB,
   POSTGRES_PORT: process.env.POSTGRES_PORT,
-  // 
+  //
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_TOKEN_EXPIRE: process.env.JWT_TOKEN_EXPIRE,
   JWT_SECRET_TOKEN_REFRESH: process.env.JWT_SECRET_TOKEN_REFRESH,
   JWT_TOKEN_REFRESH_EXPIRE: process.env.JWT_TOKEN_REFRESH_EXPIRE,
-
 };
 
 export default config;

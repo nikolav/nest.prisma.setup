@@ -9,7 +9,7 @@
     "prebuild": "rimraf dist",
     "build": "dotenv -e .env.dev -- nest build",
     "build:prod": "dotenv -e .env -- nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"prisma/**/*.ts\" \"config**/*.ts\" \"./mod.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"prisma/**/*.ts\" \"config**/*.ts\"",
     "start": "nest start",
     "dev": "dotenv -e .env.dev -- nest start --watch",
     "start:dev": "dotenv -e .env.dev -- nest start --watch",

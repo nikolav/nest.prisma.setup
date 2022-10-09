@@ -1,7 +1,7 @@
 
 ###
 
-POST http://172.104.229.79:8081/auth/authenticate
+POST http://localhost:3001/auth/authenticate
 Accept: application/json
 Content-Type: application/json
 
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 ###
 
-POST http://172.104.229.79:8081/auth/register
+POST http://localhost:3001/auth/register
 Accept: application/json
 Content-Type: application/json
 
@@ -24,9 +24,8 @@ Content-Type: application/json
 
 ###
 
-# http://localhost:3001/auth/user
-http://172.104.229.79:8081/auth/user
+http://localhost:3001/auth/user
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbDkwcTc3ODcwMDAyb3kwdHBzZmh3bDhnIiwiaWF0IjoxNjY1MjgyNDk2LCJleHAiOjE2NjUzNjg4OTZ9.QpVIfEBvKxRK66KLDHzPoPi2dZ2i_RslhjCqaoU2bhE
+Authorization: Bearer -
 
 ###

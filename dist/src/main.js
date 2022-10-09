@@ -26,7 +26,7 @@ const bootstrap = async () => {
     app.useGlobalFilters(new prisma_client_exception_filter_1.PrismaClientExceptionFilter(httpAdapter));
     const config = new swagger_1.DocumentBuilder()
         .setTitle('@API')
-        .setDescription('rest.api@nest.prisma')
+        .setDescription('nest-api')
         .setVersion('1.0')
         .addBearerAuth()
         .build();

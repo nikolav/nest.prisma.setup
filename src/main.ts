@@ -14,7 +14,7 @@ const bootstrap = async () => {
   app.use(helmet());
   app.enableCors();
   app.use(compression());
-  // 
+  //
   // validate input
   app.useGlobalPipes(
     new ValidationPipe({
@@ -31,13 +31,13 @@ const bootstrap = async () => {
   );
   // serialize output
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
-  // handle global exceptions
+  // handle global prisma exceptions
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
   //
   const config = new DocumentBuilder()
     .setTitle('@API')
-    .setDescription('rest.api@nest.prisma')
+    .setDescription('nest-api')
     .setVersion('1.0')
     // .addTag('nestjs-prisma-rest-starter')
     .addBearerAuth()

@@ -24,7 +24,7 @@ export class UserController {
       await this.serviceUser.sendPasswordResetLink(data),
     );
   }
-  // 
+  //
   @Post('password-reset')
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse()
